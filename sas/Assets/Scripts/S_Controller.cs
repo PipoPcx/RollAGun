@@ -10,6 +10,7 @@ public class S_Controller : MonoBehaviour
     private Rigidbody rb;
     private Vector3 originalScale;
     public bool lockCursor = true;
+    public GameManager gameManager;
 
     public float telekineticForce = 30f;
 
@@ -253,14 +254,12 @@ public class S_Controller : MonoBehaviour
 
         CheckGround(); //Ve si el personaje está en el suelo
 
-        Dash(); //Avtiva el método Dash
+        if (Input.GetMouseButtonDown(1) && GameManager.instance.chosenPower == GameManager.PowerChoice.Dash) {
 
-        if(Input.GetKeyDown("f")) { 
-        
-            Telekinesis();
+            Dash(); //Avtiva el método Dash
         }
 
-        if(Input.GetMouseButtonDown(1)) { 
+        if(Input.GetMouseButtonDown(1) && GameManager.instance.chosenPower == GameManager.PowerChoice.GrapplingHook) { 
         
            if(isGrappling) { 
             
@@ -272,7 +271,6 @@ public class S_Controller : MonoBehaviour
             
                 isGrappling = true;
                 GrapplingHook();
-                Debug.Log("Hola");
             }
         }
 
@@ -356,13 +354,11 @@ public class S_Controller : MonoBehaviour
 
     public void Dash() {
 
-        if (Input.GetKeyDown("c") && !isDashing)
-        {
             Vector3 moveDirection = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"),0f,Input.GetAxis("Vertical"))).normalized;
             dashTarget = transform.position + moveDirection * dashDistance;
             isDashing = true;
             Debug.Log("DashTarget: " + dashTarget);
-        }
+        
     }
 
     public void Telekinesis() {

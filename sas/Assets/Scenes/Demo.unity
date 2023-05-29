@@ -5951,6 +5951,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinAnimator: {fileID: 0}
+  coinPowerAnimator: {fileID: 0}
+  isDash: 0
+  chosenPower: 0
   chosenWeapon: 0
 --- !u!4 &1837332633
 Transform:
@@ -6461,6 +6464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockCursor: 1
+  gameManager: {fileID: 1837332632}
   telekineticForce: 5000
   grapplingSpeed: 30
   hookMaxDistance: 100
